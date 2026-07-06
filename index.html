@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cric Captain — Plan, share and lead your cricket team</title>
+  <meta name="description" content="Cric Captain helps cricket captains plan field placements, manage matches and tournaments, track player availability, and share everything with the team." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark: #06160F;
+      --dark-mid: #0A2A1F;
+      --dark-light: #14503A;
+      --gold: #D4A24C;
+      --gold-soft: #E8C586;
+      --cream: #F6F4EF;
+      --muted: #9DB4A6;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+      background: linear-gradient(160deg, var(--dark) 0%, var(--dark-mid) 55%, var(--dark-light) 130%);
+      color: var(--cream);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; width: 100%; }
+
+    header { padding: 96px 0 40px; text-align: center; }
+
+    .logo {
+      width: 84px; height: 84px;
+      margin: 0 auto 20px;
+      background: var(--dark-mid);
+      border: 2px solid var(--gold);
+      border-radius: 22px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 42px;
+    }
+
+    h1 {
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: var(--cream);
+    }
+
+    .tagline {
+      margin-top: 10px;
+      font-size: 17px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .badges {
+      margin: 36px 0 8px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 12px 22px;
+      border-radius: 99px;
+      text-decoration: none;
+    }
+
+    .badge.soon {
+      background: transparent;
+      color: var(--gold-soft);
+      border: 1.5px solid var(--gold);
+      opacity: 0.85;
+      cursor: default;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      padding: 40px 0 24px;
+    }
+
+    .feature {
+      background: rgba(246, 244, 239, 0.05);
+      border: 1px solid rgba(212, 162, 76, 0.25);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .feature .icon { font-size: 22px; }
+
+    .feature h3 {
+      margin-top: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--gold-soft);
+    }
+
+    .feature p {
+      margin-top: 4px;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 40px 0 56px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    footer nav {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    footer a { color: var(--gold-soft); text-decoration: none; font-weight: 600; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 480px) {
+      header { padding-top: 64px; }
+      h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="logo">🏏</div>
+    <h1>Cric Captain</h1>
+    <p class="tagline">Plan, share and lead your cricket team</p>
+    <div class="badges">
+      <span class="badge soon">Google Play — coming soon</span>
+      <span class="badge soon">App Store — coming soon</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="features">
+      <div class="feature">
+        <div class="icon">🗺️</div>
+        <h3>Field placement planner</h3>
+        <p>Set your field on an interactive pitch canvas and share it with the whole team before the bowler runs in.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🏆</div>
+        <h3>Matches &amp; tournaments</h3>
+        <p>Schedule matches, pick your XI, track results across tournaments and divisions.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">👥</div>
+        <h3>Team &amp; availability</h3>
+        <p>Invite players with a code, manage your roster, and know who's available before selection day.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📊</div>
+        <h3>Stats &amp; exports</h3>
+        <p>Appearances, win rates and match logs per player — exportable to Excel in one tap.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <nav>
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="/terms-and-conditions.html">Terms &amp; Conditions</a>
+      <a href="/delete-account.html">Delete Account</a>
+      <a href="mailto:support@criccaptain.com">Support</a>
+    </nav>
+    <p>© 2026 Cric Captain · support@criccaptain.com</p>
+  </footer>
+</body>
+</html>
