@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Cric Captain</title>
+  <meta name="description" content="Get help with Cric Captain — contact support, common questions, and account management." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark: #06160F;
+      --dark-mid: #0A2A1F;
+      --dark-light: #14503A;
+      --gold: #D4A24C;
+      --gold-soft: #E8C586;
+      --cream: #F6F4EF;
+      --muted: #9DB4A6;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+      background: linear-gradient(160deg, var(--dark) 0%, var(--dark-mid) 55%, var(--dark-light) 130%);
+      color: var(--cream);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px; width: 100%; }
+
+    header { padding: 72px 0 16px; text-align: center; }
+    header a.home { color: var(--gold-soft); text-decoration: none; font-weight: 600; font-size: 14px; }
+    h1 { font-size: 32px; font-weight: 900; letter-spacing: -0.5px; margin-top: 12px; }
+    .sub { color: var(--muted); font-size: 15px; margin-top: 6px; }
+
+    .card {
+      background: rgba(246, 244, 239, 0.05);
+      border: 1px solid rgba(212, 162, 76, 0.25);
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .card h2 { font-size: 17px; font-weight: 800; color: var(--gold-soft); margin-bottom: 8px; }
+    .card p { font-size: 14px; color: var(--muted); }
+    .card a { color: var(--gold-soft); }
+
+    label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted); margin: 16px 0 6px; }
+    input, textarea {
+      width: 100%;
+      background: rgba(6, 22, 15, 0.6);
+      border: 1.5px solid rgba(212, 162, 76, 0.35);
+      border-radius: 12px;
+      color: var(--cream);
+      font-size: 15px;
+      font-family: inherit;
+      padding: 12px 14px;
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--gold); }
+    textarea { min-height: 120px; resize: vertical; }
+
+    button {
+      margin-top: 18px;
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 800;
+      font-size: 15px;
+      border: none;
+      border-radius: 99px;
+      padding: 13px 30px;
+      cursor: pointer;
+    }
+    button:hover { background: var(--gold-soft); }
+
+    .hint { font-size: 12.5px; color: var(--muted); margin-top: 10px; }
+
+    details { margin-top: 12px; border-bottom: 1px solid rgba(212, 162, 76, 0.2); padding-bottom: 12px; }
+    summary { cursor: pointer; font-weight: 700; font-size: 14.5px; color: var(--cream); }
+    details p { margin-top: 8px; font-size: 14px; color: var(--muted); }
+
+    footer { margin-top: auto; padding: 40px 0 56px; text-align: center; font-size: 14px; color: var(--muted); }
+    footer a { color: var(--gold-soft); text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <a class="home" href="/">← Cric Captain</a>
+    <h1>Support</h1>
+    <p class="sub">Questions, problems or feedback — we're happy to help.</p>
+  </header>
+
+  <main class="wrap">
+    <div class="card">
+      <h2>Contact us</h2>
+      <p>Email us directly at <a href="mailto:criccaptain.app@gmail.com">criccaptain.app@gmail.com</a>
+         or use the form below — it opens your mail app with everything filled in.</p>
+
+      <form id="supportForm">
+        <label for="name">Your name</label>
+        <input id="name" type="text" placeholder="Your name" />
+
+        <label for="topic">Topic</label>
+        <input id="topic" type="text" placeholder="e.g. Login problem, team setup, feature request" />
+
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Describe your question or problem…"></textarea>
+
+        <button type="submit">Send email</button>
+        <p class="hint">Sends to criccaptain.app@gmail.com from your own mail app. We usually reply within a few days.</p>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Common questions</h2>
+      <details>
+        <summary>I forgot my password</summary>
+        <p>On the login screen tap <strong>Forgot password?</strong>, enter your email, and follow
+           the reset link we send you. Check your spam folder if it doesn't arrive within a few minutes.</p>
+      </details>
+      <details>
+        <summary>How do I join my team as a player?</summary>
+        <p>Ask your team admin for an invite code, then choose <strong>Create an account</strong> in the
+           app and enter the code during signup. You'll be linked to your team automatically.</p>
+      </details>
+      <details>
+        <summary>How do I delete my account?</summary>
+        <p>In the app: Profile → Personal details → Delete account. Or see the
+           <a href="/delete-account.html">account deletion page</a> for step-by-step instructions.
+           Deletion permanently removes your account and all data.</p>
+      </details>
+    </div>
+  </main>
+
+  <footer class="wrap">
+    <nav>
+      <a href="/">Home</a> ·
+      <a href="/privacy-policy.html">Privacy Policy</a> ·
+      <a href="/terms-and-conditions.html">Terms &amp; Conditions</a>
+    </nav>
+    <p>© 2026 Cric Captain · criccaptain.app@gmail.com</p>
+  </footer>
+
+  <script>
+    document.getElementById('supportForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('name').value.trim();
+      var topic = document.getElementById('topic').value.trim() || 'Support request';
+      var message = document.getElementById('message').value.trim();
+      var subject = encodeURIComponent('[Cric Captain] ' + topic);
+      var body = encodeURIComponent(message + (name ? '\n\n— ' + name : ''));
+      window.location.href = 'mailto:criccaptain.app@gmail.com?subject=' + subject + '&body=' + body;
+    });
+  </script>
+</body>
+</html>
