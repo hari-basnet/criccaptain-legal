@@ -95,20 +95,33 @@
     <div class="card">
       <h2>Contact us</h2>
       <p>Email us directly at <a href="mailto:criccaptain.app@gmail.com">criccaptain.app@gmail.com</a>
-         or use the form below — it opens your mail app with everything filled in.</p>
+         or send a message with the form below.</p>
 
-      <form id="supportForm">
+      <div id="sentBanner" style="display:none; background:rgba(212,162,76,0.15); border:1px solid var(--gold); border-radius:12px; padding:14px 16px; margin-top:16px; font-size:14px;">
+        ✅ Message sent — we'll get back to you at the email you provided.
+      </div>
+
+      <form id="supportForm" action="https://formsubmit.co/criccaptain.app@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="[Cric Captain] Support request" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_next" value="https://criccaptain.com/support.html?sent=1" />
+        <input type="text" name="_honey" style="display:none" />
+
         <label for="name">Your name</label>
-        <input id="name" type="text" placeholder="Your name" />
+        <input id="name" name="name" type="text" placeholder="Your name" required />
+
+        <label for="email">Your email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required />
 
         <label for="topic">Topic</label>
-        <input id="topic" type="text" placeholder="e.g. Login problem, team setup, feature request" />
+        <input id="topic" name="topic" type="text" placeholder="e.g. Login problem, team setup, feature request" />
 
         <label for="message">Message</label>
-        <textarea id="message" placeholder="Describe your question or problem…"></textarea>
+        <textarea id="message" name="message" placeholder="Describe your question or problem…" required></textarea>
 
-        <button type="submit">Send email</button>
-        <p class="hint">Sends to criccaptain.app@gmail.com from your own mail app. We usually reply within a few days.</p>
+        <button type="submit">Send message</button>
+        <p class="hint">Goes to criccaptain.app@gmail.com. We usually reply within a few days.</p>
       </form>
     </div>
 
@@ -143,15 +156,11 @@
   </footer>
 
   <script>
-    document.getElementById('supportForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var name = document.getElementById('name').value.trim();
-      var topic = document.getElementById('topic').value.trim() || 'Support request';
-      var message = document.getElementById('message').value.trim();
-      var subject = encodeURIComponent('[Cric Captain] ' + topic);
-      var body = encodeURIComponent(message + (name ? '\n\n— ' + name : ''));
-      window.location.href = 'mailto:criccaptain.app@gmail.com?subject=' + subject + '&body=' + body;
-    });
+    // Show a confirmation banner after FormSubmit redirects back with ?sent=1
+    if (new URLSearchParams(window.location.search).get('sent') === '1') {
+      document.getElementById('sentBanner').style.display = 'block';
+      document.getElementById('supportForm').reset();
+    }
   </script>
 </body>
 </html>
