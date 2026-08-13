@@ -150,6 +150,13 @@
       font-size: 16px;
     }
 
+    /* The "How We Use" table gained a third column (legal basis) on
+       13 Aug 2026. Three columns of prose do not fit a phone, so let the
+       table scroll sideways inside its own box rather than squeezing the
+       page or forcing the body to scroll horizontally. */
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .table-scroll table { min-width: 520px; }
+
     footer {
       max-width: 720px;
       margin: 48px auto 0;
@@ -177,7 +184,7 @@
   <div class="container">
 
     <div class="meta">
-      <strong>Privacy Policy</strong> &nbsp;·&nbsp; Effective date: 19 May 2026 &nbsp;·&nbsp; Last updated: 19 May 2026
+      <strong>Privacy Policy</strong> &nbsp;·&nbsp; Effective date: 19 May 2026 &nbsp;·&nbsp; Last updated: 13 August 2026
     </div>
 
     <!-- 1 -->
@@ -206,7 +213,8 @@
     <div class="badge">Collected automatically</div>
     <ul>
       <li><strong>Device push token</strong> — to deliver match notifications (only if you grant permission)</li>
-      <li><strong>Crash and performance data</strong> — via Firebase, to improve app stability</li>
+      <li><strong>Crash and error reports</strong> — via Sentry, to diagnose and fix faults. These contain the technical details of the fault and your account identifier, so we can tell whether a problem affects one account or many. They do not contain your name, email address, or any team or match content.</li>
+      <li><strong>Subscription status</strong> — via RevenueCat, to determine whether your account has an active subscription. We never see or receive your card details; payment is handled entirely by Apple or Google.</li>
     </ul>
 
     <div class="badge">We do NOT collect</div>
@@ -219,19 +227,26 @@
 
     <!-- 3 -->
     <h2>3. How We Use Your Information</h2>
+    <p>
+      If you are in the European Economic Area or the United Kingdom, the law requires us to tell
+      you our legal basis for each use. That is the right-hand column below.
+    </p>
+    <div class="table-scroll">
     <table>
       <thead>
-        <tr><th>Purpose</th><th>Data used</th></tr>
+        <tr><th>Purpose</th><th>Data used</th><th>Legal basis</th></tr>
       </thead>
       <tbody>
-        <tr><td>Creating and managing your account</td><td>Email, password, display name</td></tr>
-        <tr><td>Displaying your team and match data</td><td>Team, player, and match records</td></tr>
-        <tr><td>Sending match notifications</td><td>Push token, match details</td></tr>
-        <tr><td>Linking player accounts to squad entries</td><td>Email, invite code</td></tr>
-        <tr><td>Improving app stability</td><td>Crash and performance logs</td></tr>
-        <tr><td>Legal compliance</td><td>Privacy policy acceptance timestamp</td></tr>
+        <tr><td>Creating and managing your account</td><td>Email, password, display name</td><td>Performance of a contract</td></tr>
+        <tr><td>Displaying your team and match data</td><td>Team, player, and match records</td><td>Performance of a contract</td></tr>
+        <tr><td>Sending match notifications</td><td>Push token, match details</td><td>Consent (you grant notification permission, and may withdraw it at any time)</td></tr>
+        <tr><td>Linking player accounts to squad entries</td><td>Email, invite code</td><td>Performance of a contract</td></tr>
+        <tr><td>Managing subscriptions</td><td>Account identifier, subscription status</td><td>Performance of a contract</td></tr>
+        <tr><td>Diagnosing crashes and faults</td><td>Error reports, account identifier</td><td>Legitimate interests — keeping the app working. You may object; see section 10.</td></tr>
+        <tr><td>Legal compliance</td><td>Privacy policy acceptance timestamp</td><td>Legal obligation</td></tr>
       </tbody>
     </table>
+    </div>
 
     <!-- 4 -->
     <h2>4. Data Storage</h2>
@@ -239,6 +254,13 @@
       Your data is stored securely using <strong>Google Firebase (Firestore)</strong>, hosted on
       Google Cloud infrastructure. Data is stored per user account and is only accessible by you
       and members of your team via invite code.
+    </p>
+    <p>
+      Your team and match data is held in Google's <strong>europe-north1</strong> region, in Finland.
+      Some of our processors are based outside the European Economic Area, or may access data from
+      outside it for support purposes. Where that happens, the transfer is covered by the European
+      Commission's Standard Contractual Clauses under our data processing agreement with that
+      provider.
     </p>
     <div class="card">
       <p>Firebase Privacy Policy: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></p>
@@ -258,8 +280,15 @@
     <ul>
       <li><strong>Google Firebase</strong> — data storage and authentication</li>
       <li><strong>Expo</strong> — push token routing to Apple APNs / Google FCM</li>
+      <li><strong>Sentry</strong> — crash and error reporting (technical fault details and your account identifier)</li>
+      <li><strong>RevenueCat</strong> — subscription status (your account identifier and whether a subscription is active)</li>
+      <li><strong>Apple and Google</strong> — subscription payments. They act as the seller and handle payment entirely; we never receive your card details.</li>
       <li><strong>Legal obligations</strong> — if required by applicable law</li>
     </ul>
+    <p>
+      Each of these acts as a processor on our instructions under a data processing agreement.
+      None of them are permitted to use your data for their own purposes.
+    </p>
 
     <!-- 7 -->
     <h2>7. Data Retention</h2>
@@ -269,33 +298,79 @@
     </p>
 
     <!-- 8 -->
-    <h2>8. Children's Privacy</h2>
+    <h2>8. Squad Members Added by a Captain</h2>
     <p>
-      Cric Captain is not directed at children under 13. We do not knowingly collect personal
-      information from children under 13. If you believe a child has provided personal data,
-      contact us and we will delete it promptly.
+      Cric Captain lets a captain build a squad by entering players' names, and optionally their
+      email addresses in order to invite them. This means we may hold information about you that
+      you did not give us yourself, and possibly before you have ever opened the app.
+    </p>
+    <div class="card">
+      <p>
+        <strong>If a captain has added you to a squad:</strong> the information held is your name,
+        your playing role, your availability for matches, and — if the captain invited you — your
+        email address. It is visible to that captain and to other members of that team. It is not
+        used for marketing, and it is never sold.
+      </p>
+    </div>
+    <p>
+      The captain who entered your details decides what is recorded about you and is responsible
+      for having a proper reason to record it. We provide the app that stores it. If you want your
+      details corrected or removed, you can ask your captain directly, or contact us at
+      <a href="mailto:criccaptain.app@gmail.com">criccaptain.app@gmail.com</a> and we will act on
+      your request even if you do not have an account with us.
     </p>
 
     <!-- 9 -->
-    <h2>9. Your Rights</h2>
+    <h2>9. Children's Privacy</h2>
+    <p>
+      Cric Captain is not directed at children, and you must be at least 13 to create an account.
+      We do not knowingly allow anyone under 13 to register.
+    </p>
+    <p>
+      We recognise that club squads often include junior players, and that a captain may add a
+      child's name to a squad under section 8. Captains are responsible for obtaining the consent
+      of a parent or guardian before entering a child's personal details, and for entering no more
+      than is needed to organise the team. If you are a parent or guardian and believe a child's
+      information has been recorded without your agreement, contact us and we will delete it
+      promptly.
+    </p>
+
+    <!-- 10 -->
+    <h2>10. Your Rights</h2>
     <ul>
       <li><strong>Access</strong> — request a copy of your personal data</li>
       <li><strong>Correction</strong> — update incorrect information via the app</li>
-      <li><strong>Deletion</strong> — request deletion of your account and all data</li>
-      <li><strong>Portability</strong> — request your data in a portable format</li>
+      <li><strong>Deletion</strong> — delete your account and all data from Profile &rsaquo; Personal details in the app, or ask us to do it</li>
+      <li><strong>Portability</strong> — request your data in a portable, machine-readable format</li>
+      <li><strong>Objection</strong> — object to processing we carry out on the basis of legitimate interests, such as crash reporting</li>
+      <li><strong>Restriction</strong> — ask us to limit how we use your data while a query is resolved</li>
+      <li><strong>Withdraw consent</strong> — turn off notification permission at any time in your device settings, without affecting anything done beforehand</li>
     </ul>
-    <p>To exercise any of these rights, contact us at <a href="mailto:criccaptain.app@gmail.com">criccaptain.app@gmail.com</a>.</p>
+    <p>
+      To exercise any of these rights, contact us at
+      <a href="mailto:criccaptain.app@gmail.com">criccaptain.app@gmail.com</a>. We will respond
+      within one month. There is no charge.
+    </p>
+    <div class="card">
+      <p>
+        <strong>If you are in the EEA or the UK</strong> and you think we have handled your data
+        improperly, you have the right to complain to your data protection authority. Ours is the
+        Finnish Office of the Data Protection Ombudsman
+        (<a href="https://tietosuoja.fi/en" target="_blank">tietosuoja.fi/en</a>). We would rather
+        you came to us first so we can put it right.
+      </p>
+    </div>
 
-    <!-- 10 -->
-    <h2>10. Security</h2>
+    <!-- 11 -->
+    <h2>11. Security</h2>
     <ul>
       <li>Firebase Authentication for secure login</li>
       <li>Firestore security rules restricting data access per user</li>
       <li>HTTPS encryption for all data in transit</li>
     </ul>
 
-    <!-- 11 -->
-    <h2>11. Changes to This Policy</h2>
+    <!-- 12 -->
+    <h2>12. Changes to This Policy</h2>
     <p>
       We may update this policy from time to time. We will notify you of significant changes
       via the app or by email. Continued use of the app after changes constitutes acceptance
@@ -304,17 +379,21 @@
 
     <!-- Contact -->
     <div class="contact-box">
-      <h2>12. Contact Us</h2>
+      <h2>13. Contact Us</h2>
       <p style="margin-top: 8px;">
+        The data controller responsible for your personal data is:<br /><br />
         <strong>Cric Captain</strong><br />
         Email: <a href="mailto:criccaptain.app@gmail.com">criccaptain.app@gmail.com</a><br />
         Country: <strong>Finland</strong>
+      </p>
+      <p style="margin-top: 12px;">
+        We have not appointed a Data Protection Officer, as we are not required to.
       </p>
     </div>
 
     <footer>
       <span>© 2026 Cric Captain. All rights reserved.</span>
-      <span>Last updated: 19 May 2026</span>
+      <span>Last updated: 13 August 2026</span>
     </footer>
 
   </div>
