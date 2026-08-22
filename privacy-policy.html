@@ -215,7 +215,7 @@
       <li><strong>Device push token</strong> — to deliver match notifications (only if you grant permission)</li>
       <li><strong>Crash and error reports</strong> — via Sentry, to diagnose and fix faults. These contain the technical details of the fault and your account identifier, so we can tell whether a problem affects one account or many. They do not contain your name, email address, or any team or match content.</li>
       <li><strong>Subscription status</strong> — via RevenueCat, to determine whether your account has an active subscription. We never see or receive your card details; payment is handled entirely by Apple or Google.</li>
-      <li><strong>App usage events</strong> — via Firebase Analytics, to understand how the app is used (for example, signing up, creating a team, inviting a player, saving a field setup, sharing a playing XI, viewing the upgrade screen, or subscribing). These are tied to your account identifier only, never to your name, email, or team/match content, and are never used to advertise to you or track you outside this app.</li>
+      <li><strong>App usage events</strong> — via PostHog, to understand how the app is used (for example, signing up, creating a team, inviting a player, saving a field setup, sharing a playing XI, viewing the upgrade screen, or subscribing). These are tied to your account identifier only, never to your name, email, or team/match content, and are never used to advertise to you or track you outside this app.</li>
     </ul>
 
     <div class="badge">We do NOT collect</div>
@@ -280,9 +280,10 @@
     <h2>6. Data Sharing</h2>
     <p>We do not sell, trade, or share your personal data. We only use the following processors:</p>
     <ul>
-      <li><strong>Google Firebase</strong> — data storage, authentication, and app usage analytics</li>
+      <li><strong>Google Firebase</strong> — data storage and authentication</li>
       <li><strong>Expo</strong> — push token routing to Apple APNs / Google FCM</li>
       <li><strong>Sentry</strong> — crash and error reporting (technical fault details and your account identifier)</li>
+      <li><strong>PostHog</strong> — app usage analytics (your account identifier and the actions you take in the app), hosted in the EU</li>
       <li><strong>RevenueCat</strong> — subscription status (your account identifier and whether a subscription is active)</li>
       <li><strong>Apple and Google</strong> — subscription payments. They act as the seller and handle payment entirely; we never receive your card details.</li>
       <li><strong>Legal obligations</strong> — if required by applicable law</li>
