@@ -173,13 +173,13 @@
     .top-links .quiet { color: var(--ink-2); transition: color 150ms var(--ease); }
     .top-links .quiet:hover { color: var(--ink); }
 
-    .hero-copy { position: relative; z-index: 3; text-align: center; padding-top: 4vh; }
+    .hero-copy { position: relative; z-index: 3; text-align: center; padding-top: 4vh; padding-bottom: 32px; }
 
     .kicker { font-size: 22px; color: var(--ink-2); text-transform: none; }
 
     h1 {
       margin-top: 12px;
-      font-size: clamp(34px, 8.2vw, 112px);
+      font-size: clamp(34px, min(8.2vw, 11vh), 112px);
       line-height: 0.95;
       letter-spacing: 0;
       color: var(--ink);
@@ -215,7 +215,7 @@
 
     /* sky + scene */
     .sky { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-    .scene { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: min(52vh, 600px); pointer-events: none; }
+    .scene { position: relative; z-index: 2; flex: none; margin-top: auto; height: min(52vh, 600px); pointer-events: none; }
     .scene svg { display: block; width: 100%; height: 100%; }
 
     .cloud { animation: drift var(--t, 60s) ease-in-out infinite alternate; animation-delay: var(--dl, 0s); }
@@ -318,7 +318,7 @@
       .kicker { font-size: 19px; }
       .lede { font-size: 16px; }
       .actions .btn { flex: 1 1 100%; justify-content: center; padding: 0 24px 0 12px; }
-      .scene { height: min(44vh, 380px); }
+      .scene { height: min(44vh, 380px); margin-top: -48px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
