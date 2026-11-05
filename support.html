@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#eaf3fc" />
   <title>Support — Cric Captain</title>
   <link rel="icon" type="image/png" href="app-icon.png">
   <link rel="apple-touch-icon" href="app-icon.png">
@@ -11,79 +12,96 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --dark: #06160F;
-      --dark-mid: #0A2A1F;
-      --dark-light: #14503A;
-      --gold: #D4A24C;
-      --gold-soft: #E8C586;
-      --cream: #F6F4EF;
-      --muted: #9DB4A6;
+      --bg: #eaf3fc;
+      --surface: #fffbf1;
+      --text: #2d2d2d;
+      --text-2: #5a5a5a;
+      --muted: #6a6a6a;
+      --hair: rgba(45, 45, 45, 0.12);
+      --gold: #299bde;
+      --gold-soft: #1d6fb0;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
-      background: linear-gradient(160deg, var(--dark) 0%, var(--dark-mid) 55%, var(--dark-light) 130%);
-      color: var(--cream);
-      line-height: 1.7;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      -webkit-font-smoothing: antialiased;
     }
 
     .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px; width: 100%; }
 
-    header { padding: 72px 0 16px; text-align: center; }
-    header a.home { color: var(--gold-soft); text-decoration: none; font-weight: 600; font-size: 14px; }
-    h1 { font-size: 32px; font-weight: 900; letter-spacing: -0.5px; margin-top: 12px; }
-    .sub { color: var(--muted); font-size: 15px; margin-top: 6px; }
+    header { padding: 72px 0 16px; }
+    header a.home { color: var(--text-2); text-decoration: none; font-size: 14px; transition: color 150ms var(--ease); }
+    header a.home:hover { color: var(--text); }
+    h1 { font-family: "Baloo 2", "Arial Rounded MT Bold", ui-rounded, "SF Pro Rounded", "Hiragino Maru Gothic ProN", Nunito, system-ui, sans-serif; font-synthesis: none; font-size: 44px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; margin-top: 24px; }
+    .sub { color: var(--text-2); font-size: 16px; margin-top: 12px; }
 
     .card {
-      background: rgba(246, 244, 239, 0.05);
-      border: 1px solid rgba(212, 162, 76, 0.25);
+      background: var(--surface);
+      border: 1px solid var(--hair);
       border-radius: 16px;
       padding: 24px;
       margin-top: 24px;
     }
 
-    .card h2 { font-size: 17px; font-weight: 800; color: var(--gold-soft); margin-bottom: 8px; }
-    .card p { font-size: 14px; color: var(--muted); }
+    .card h2 { font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+    .card p { font-size: 15px; color: var(--text-2); }
     .card a { color: var(--gold-soft); }
 
-    label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted); margin: 16px 0 6px; }
+    label { display: block; font-size: 13px; font-weight: 500; color: var(--text-2); margin: 16px 0 8px; }
     input, textarea {
       width: 100%;
-      background: rgba(6, 22, 15, 0.6);
-      border: 1.5px solid rgba(212, 162, 76, 0.35);
-      border-radius: 12px;
-      color: var(--cream);
+      background: var(--bg);
+      border: 1px solid var(--hair);
+      border-radius: 10px;
+      color: var(--text);
       font-size: 15px;
       font-family: inherit;
       padding: 12px 14px;
+      transition: border-color 150ms var(--ease);
     }
+    input::placeholder, textarea::placeholder { color: var(--muted); }
     input:focus, textarea:focus { outline: none; border-color: var(--gold); }
     textarea { min-height: 120px; resize: vertical; }
 
     button {
-      margin-top: 18px;
-      background: var(--gold);
-      color: var(--dark);
+      margin-top: 20px;
+      background: #299bde;
+      color: #fffbf1;
+      font-family: "Baloo 2", "Arial Rounded MT Bold", ui-rounded, "SF Pro Rounded", "Hiragino Maru Gothic ProN", Nunito, system-ui, sans-serif;
+      font-synthesis: none;
       font-weight: 800;
-      font-size: 15px;
+      font-size: 17px;
+      text-transform: uppercase;
       border: none;
-      border-radius: 99px;
-      padding: 13px 30px;
+      border-radius: 999px;
+      height: 52px;
+      padding: 0 32px;
       cursor: pointer;
+      box-shadow: 0 5px 0 #1f78b4;
+      transition: background-color 150ms var(--ease), transform 120ms var(--ease), box-shadow 120ms var(--ease);
     }
-    button:hover { background: var(--gold-soft); }
+    button:hover { background: #3aa7e8; }
+    button:active { transform: translateY(4px); box-shadow: 0 1px 0 #1f78b4; }
+    button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
-    .hint { font-size: 12.5px; color: var(--muted); margin-top: 10px; }
+    .hint { font-size: 13px; color: var(--muted); margin-top: 12px; }
 
-    details { margin-top: 12px; border-bottom: 1px solid rgba(212, 162, 76, 0.2); padding-bottom: 12px; }
-    summary { cursor: pointer; font-weight: 700; font-size: 14.5px; color: var(--cream); }
-    details p { margin-top: 8px; font-size: 14px; color: var(--muted); }
+    details { margin-top: 12px; border-bottom: 1px solid var(--hair); padding-bottom: 12px; }
+    details:last-of-type { border-bottom: none; padding-bottom: 0; }
+    summary { cursor: pointer; font-weight: 500; font-size: 15px; color: var(--text); }
+    details p { margin-top: 8px; font-size: 15px; color: var(--text-2); }
 
-    footer { margin-top: auto; padding: 40px 0 56px; text-align: center; font-size: 14px; color: var(--muted); }
-    footer a { color: var(--gold-soft); text-decoration: none; font-weight: 600; }
+    footer { margin-top: auto; padding: 48px 0 56px; text-align: center; font-size: 14px; color: var(--muted); }
+    footer a { color: var(--text-2); text-decoration: none; transition: color 150ms var(--ease); }
+    footer a:hover { color: var(--text); }
+    footer p { margin-top: 8px; }
   </style>
 </head>
 <body>
@@ -99,8 +117,8 @@
       <p>Email us directly at <a href="mailto:criccaptain.app@gmail.com">criccaptain.app@gmail.com</a>
          or send a message with the form below.</p>
 
-      <div id="sentBanner" style="display:none; background:rgba(212,162,76,0.15); border:1px solid var(--gold); border-radius:12px; padding:14px 16px; margin-top:16px; font-size:14px;">
-        ✅ Message sent — we'll get back to you at the email you provided.
+      <div id="sentBanner" style="display:none; background:rgba(41,155,222,0.12); border:1px solid rgba(41,155,222,0.4); border-radius:10px; padding:14px 16px; margin-top:16px; font-size:14px;">
+        Message sent — we'll get back to you at the email you provided.
       </div>
 
       <form id="supportForm" action="https://formsubmit.co/criccaptain.app@gmail.com" method="POST">

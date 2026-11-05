@@ -3,211 +3,444 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#e9f3fc" />
   <title>Cric Captain — Plan, share and lead your cricket team</title>
   <link rel="icon" type="image/png" href="app-icon.png">
   <link rel="apple-touch-icon" href="app-icon.png">
   <meta name="description" content="Cric Captain helps cricket captains plan field placements, manage matches and tournaments, track player availability, and share everything with the team." />
+  <script>document.documentElement.classList.add('js');</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --dark: #06160F;
-      --dark-mid: #0A2A1F;
-      --dark-light: #14503A;
-      --gold: #D4A24C;
-      --gold-soft: #E8C586;
-      --cream: #F6F4EF;
-      --muted: #9DB4A6;
+      --ink: #2d2d2d;
+      --ink-2: rgba(45, 45, 45, 0.76);
+      --cream: #fffbf1;
+      --sky: #e9f3fc;
+      --blue: #299bde;
+      --blue-edge: #1f78b4;
+      --blue-deep: #1e6fa8;
+      --sun: #ffc83d;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --display: "Baloo 2", "Arial Rounded MT Bold", ui-rounded, "SF Pro Rounded", "Hiragino Maru Gothic ProN", Nunito, system-ui, sans-serif;
+      --hand: "Walter Turncoat", "Bradley Hand", "Segoe Print", "Chalkboard SE", "Comic Sans MS", cursive;
+      --sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
-      background: linear-gradient(160deg, var(--dark) 0%, var(--dark-mid) 55%, var(--dark-light) 130%);
-      color: var(--cream);
-      line-height: 1.7;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      font-family: var(--sans);
+      background: var(--sky);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; width: 100%; }
+    a { color: inherit; text-decoration: none; }
 
-    header { padding: 96px 0 40px; text-align: center; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; width: 100%; }
 
-    .logo {
-      width: 108px; height: 108px;
-      margin: 0 auto 20px;
-      background: var(--dark-mid);
-      border: 2px solid var(--gold);
-      border-radius: 26px;
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
+    .display { font-family: var(--display); font-weight: 800; font-synthesis: none; text-transform: uppercase; }
+    .hand { font-family: var(--hand); font-synthesis: none; }
+
+    /* hero */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 100vh; min-height: 100svh;
+      background: linear-gradient(180deg, #d4e4f6 0%, #e6f1fb 42%, #f4f9ff 100%);
+      display: flex; flex-direction: column;
     }
 
-    .logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .top { position: relative; z-index: 3; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+
+    .brand { display: flex; align-items: center; gap: 12px; font-size: 22px; line-height: 1; white-space: nowrap; text-transform: none; }
+    .brand img { width: 40px; height: 40px; border-radius: 12px; display: block; box-shadow: 0 3px 0 rgba(45, 45, 45, 0.14); }
+
+    .top-links { display: flex; align-items: center; gap: 24px; font-size: 15px; font-weight: 600; }
+    .top-links .quiet { color: var(--ink-2); transition: color 150ms var(--ease); }
+    .top-links .quiet:hover { color: var(--ink); }
+
+    .hero-copy { position: relative; z-index: 3; text-align: center; padding-top: 4vh; }
+
+    .kicker { font-size: 22px; color: var(--ink-2); text-transform: none; }
 
     h1 {
-      font-size: 40px;
-      font-weight: 900;
-      letter-spacing: -1px;
-      color: var(--cream);
+      margin-top: 12px;
+      font-size: clamp(34px, 8.2vw, 112px);
+      line-height: 0.95;
+      letter-spacing: 0;
+      color: var(--ink);
     }
 
-    .tagline {
-      margin-top: 10px;
-      font-size: 17px;
-      color: var(--muted);
-      font-weight: 500;
+    .lede { margin: 20px auto 0; max-width: 34rem; font-size: 18px; line-height: 1.55; color: var(--ink-2); }
+
+    .actions { margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+
+    /* chunky pill button, pressed edge like the reference */
+    .btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      height: 60px; padding: 0 28px 0 12px;
+      border-radius: 999px;
+      background: var(--blue); color: var(--cream);
+      font-size: 20px; line-height: 1;
+      box-shadow: 0 5px 0 var(--blue-edge);
+      transition: transform 120ms var(--ease), box-shadow 120ms var(--ease), background-color 150ms var(--ease);
+    }
+    .btn:hover { background: #3aa7e8; }
+    .btn:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--blue-edge); }
+    .btn:focus-visible, .top-links a:focus-visible, footer a:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+
+    .chip { width: 36px; height: 36px; flex: none; border-radius: 50%; background: var(--cream); display: grid; place-items: center; }
+    .chip svg { width: 20px; height: 20px; display: block; }
+
+    .btn.sm { height: 44px; padding: 0 22px; font-size: 16px; box-shadow: 0 4px 0 var(--blue-edge); }
+
+    /* sky + scene */
+    .sky { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+    .scene { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: min(52vh, 600px); pointer-events: none; }
+    .scene svg { display: block; width: 100%; height: 100%; }
+
+    .cloud { animation: drift var(--t, 60s) ease-in-out infinite alternate; animation-delay: var(--dl, 0s); }
+    @keyframes drift { from { transform: translateX(-24px); } to { transform: translateX(24px); } }
+
+    .rise-scene { animation: scene-in 700ms var(--ease) both; }
+    @keyframes scene-in { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+
+    .pop { transform-box: fill-box; transform-origin: 50% 100%; animation: pop 460ms var(--ease) both; animation-delay: calc(500ms + var(--i) * 70ms); }
+    @keyframes pop { from { opacity: 0; transform: scale(0.3); } to { opacity: 1; transform: scale(1); } }
+
+    .arc { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 900ms var(--ease) 1400ms forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    .ball { animation: pop 400ms var(--ease) 2200ms both; }
+
+    .js .rise { opacity: 0; transform: translateY(12px); animation: rise 500ms var(--ease) forwards; animation-delay: calc(var(--d, 0) * 70ms); }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
+    .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 500ms var(--ease), transform 500ms var(--ease); transition-delay: calc(var(--d, 0) * 70ms); }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    /* features */
+    .features { padding: 80px 0 112px; background: var(--sky); }
+
+    .features-head { text-align: center; margin-bottom: 56px; }
+    .features-head .hand { font-size: 22px; color: var(--ink-2); }
+    h2 { margin-top: 8px; font-size: clamp(34px, 5vw, 60px); line-height: 1; }
+    .features-head p { margin: 16px auto 0; max-width: 32rem; color: var(--ink-2); font-size: 17px; }
+
+    .grid { display: grid; gap: 24px; grid-template-columns: 1.2fr 1fr; grid-template-rows: repeat(3, auto); }
+
+    .card {
+      position: relative; overflow: hidden;
+      background: var(--cream);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 6px 0 rgba(31, 120, 180, 0.14), 0 18px 36px rgba(31, 120, 180, 0.08);
+    }
+    .card.lead { grid-row: 1 / span 3; padding: 36px; display: flex; flex-direction: column; min-height: 440px; }
+
+    .badge { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: var(--tint, #cfe8f9); }
+    .badge svg { width: 26px; height: 26px; fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .card h3 { margin-top: 20px; font-family: var(--display); font-weight: 800; font-synthesis: none; font-size: 26px; line-height: 1.1; }
+    .card p { margin-top: 8px; font-size: 16px; line-height: 1.55; color: var(--ink-2); max-width: 30rem; }
+    .card.lead h3 { font-size: 40px; line-height: 1; }
+    .card.lead p { font-size: 17px; max-width: 26rem; }
+    .note { margin-top: 20px; font-size: 20px; color: var(--blue-edge); transform: rotate(-2deg); transform-origin: left; }
+
+    .mini { position: absolute; right: -40px; bottom: -70px; width: 460px; max-width: 86%; height: auto; pointer-events: none; }
+
+    /* download */
+    .cta { background: var(--blue-deep); color: var(--cream); border-radius: 56px 56px 0 0; padding: 88px 0 56px; text-align: center; position: relative; }
+    .cta .hand { font-size: 22px; color: rgba(255, 251, 241, 0.86); }
+    .cta h2 { color: var(--cream); }
+    .cta .actions { margin-top: 36px; }
+    .cta .btn { background: var(--cream); color: var(--ink); box-shadow: 0 5px 0 rgba(0, 0, 0, 0.22); }
+    .cta .btn:hover { background: #fff; }
+    .cta .btn:active { box-shadow: 0 1px 0 rgba(0, 0, 0, 0.22); }
+    .cta .btn:focus-visible { outline-color: var(--cream); }
+    .cta .chip { background: var(--sky); }
+
+    footer { margin-top: 80px; padding-top: 28px; border-top: 1px solid rgba(255, 251, 241, 0.22); font-size: 14px; color: rgba(255, 251, 241, 0.86); }
+    .foot { display: flex; justify-content: space-between; gap: 12px 32px; flex-wrap: wrap; text-align: left; }
+    footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    footer a { color: var(--cream); font-weight: 600; }
+    footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    footer a:focus-visible { outline-color: var(--cream); }
+
+    @media (max-width: 960px) {
+      .wrap { padding: 0 24px; }
+      .scene { height: min(50vh, 460px); }
+      .features { padding: 64px 0 88px; }
+      .grid { grid-template-columns: 1fr; grid-template-rows: none; }
+      .card.lead { grid-row: auto; min-height: 400px; }
+      .card.lead h3 { font-size: 34px; }
+      .cta { border-radius: 40px 40px 0 0; padding: 72px 0 48px; }
     }
 
-    .badges {
-      margin: 36px 0 8px;
-      display: flex;
-      gap: 40px;
-      justify-content: center;
-      align-items: flex-start;
-      flex-wrap: wrap;
+    @media (max-width: 560px) {
+      .top { gap: 12px; }
+      .brand { font-size: 19px; gap: 10px; }
+      .brand img { width: 36px; height: 36px; }
+      .btn.sm { height: 40px; padding: 0 18px; font-size: 15px; }
+      .top-links .quiet { display: none; }
+      .kicker { font-size: 19px; }
+      .lede { font-size: 16px; }
+      .actions .btn { flex: 1 1 100%; justify-content: center; padding: 0 24px 0 12px; }
+      .scene { height: min(44vh, 380px); }
     }
 
-    .badge {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--gold-soft);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.2px;
-      transition: transform 0.15s ease, filter 0.15s ease;
-    }
-
-    .badge svg {
-      width: 56px;
-      height: 56px;
-      display: block;
-    }
-
-    /* the Apple mark sits smaller inside its viewBox — scale up to match optically */
-    .badge.apple svg { transform: scale(1.15); }
-
-    .badge:hover,
-    .badge:focus-visible {
-      transform: translateY(-2px) scale(1.04);
-      filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.45));
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-      padding: 40px 0 24px;
-    }
-
-    .feature {
-      background: rgba(246, 244, 239, 0.05);
-      border: 1px solid rgba(212, 162, 76, 0.25);
-      border-radius: 16px;
-      padding: 20px;
-    }
-
-    .feature .icon { font-size: 22px; }
-
-    .feature h3 {
-      margin-top: 8px;
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--gold-soft);
-    }
-
-    .feature p {
-      margin-top: 4px;
-      font-size: 13.5px;
-      color: var(--muted);
-    }
-
-    footer {
-      margin-top: auto;
-      padding: 40px 0 56px;
-      text-align: center;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    footer nav {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-
-    footer a { color: var(--gold-soft); text-decoration: none; font-weight: 600; }
-    footer a:hover { text-decoration: underline; }
-
-    @media (max-width: 480px) {
-      header { padding-top: 64px; }
-      h1 { font-size: 32px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .cloud, .rise-scene, .pop, .ball { animation: none; }
+      .arc { animation: none; stroke-dashoffset: 0; }
+      .js .rise, .js .reveal { animation: none; opacity: 1; transform: none; transition: none; }
     }
   </style>
 </head>
 <body>
-  <header class="wrap">
-    <div class="logo"><img src="app-icon.png" alt="Cric Captain"></div>
-    <h1>Cric Captain</h1>
-    <p class="tagline">Plan, share and lead your cricket team</p>
-    <div class="badges">
-      <a class="badge" href="https://play.google.com/store/apps/details?id=com.criccaptain.app" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-          <path fill="#00A0FF" d="M3 20.5V3.5c0-.6.3-1.12.8-1.42L13.7 12 3.8 21.92c-.5-.3-.8-.82-.8-1.42Z"/>
-          <path fill="#00E676" d="m6.05 2.66 10.75 6.44-2.26 2.05L6.05 2.66Z"/>
-          <path fill="#FFCE00" d="M20.15 10.59c.75.42 1.15 1.05 1.15 1.41s-.4.99-1.15 1.41l-2.28 1.29-2.51-2.7 2.51-2.7 2.28 1.29Z"/>
-          <path fill="#FF3A44" d="m16.8 14.9-10.75 6.44 8.49-8.49 2.26 2.05Z"/>
-        </svg>
-        <span>Google Play</span>
-      </a>
-      <a class="badge apple" href="https://apps.apple.com/app/id6770696288" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-          <path fill="#ffffff" d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08ZM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25Z"/>
-        </svg>
-        <span>App Store</span>
-      </a>
-    </div>
-  </header>
+  <!-- shared shapes -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="cloud" viewBox="0 0 180 90">
+        <path d="M24 84C8 84 2 64 18 56C14 36 36 28 50 38C56 14 92 8 106 30C122 18 150 28 148 50C168 50 176 84 150 84Z" fill="#ffffff"/>
+        <path d="M24 84H150C160 84 166 78 168 70C150 77 40 79 14 70C16 78 20 84 24 84Z" fill="#cfe1f3"/>
+      </symbol>
+      <symbol id="person" viewBox="0 0 24 46">
+        <ellipse cx="12" cy="44.5" rx="10" ry="2.2" fill="#2d2d2d" opacity="0.16"/>
+        <rect x="6.5" y="32" width="4.5" height="12" rx="2.2" fill="#fffbf1"/>
+        <rect x="13" y="32" width="4.5" height="12" rx="2.2" fill="#fffbf1"/>
+        <rect x="0.5" y="15" width="5" height="14" rx="2.5" fill="currentColor"/>
+        <rect x="18.5" y="15" width="5" height="14" rx="2.5" fill="currentColor"/>
+        <rect x="4" y="14" width="16" height="21" rx="7" fill="currentColor"/>
+        <circle cx="12" cy="9" r="6.3" fill="#f2c9a0"/>
+        <path d="M5.4 8.2a6.6 6.6 0 0 1 13.2 0Z" fill="currentColor"/>
+        <rect x="11" y="7.4" width="9.5" height="2" rx="1" fill="currentColor"/>
+      </symbol>
+    </defs>
+  </svg>
 
-  <main class="wrap">
+  <section class="hero">
+    <!-- clouds -->
+    <svg class="sky" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g class="cloud" style="--t:70s"><use href="#cloud" x="40" y="90" width="260" height="130" opacity="0.9"/></g>
+      <g class="cloud" style="--t:55s;--dl:-12s"><use href="#cloud" x="470" y="40" width="170" height="85" opacity="0.75"/></g>
+      <g class="cloud" style="--t:80s;--dl:-30s"><use href="#cloud" x="1010" y="70" width="300" height="150" opacity="0.95"/></g>
+      <g class="cloud" style="--t:65s;--dl:-20s"><use href="#cloud" x="1230" y="250" width="180" height="90" opacity="0.7"/></g>
+      <g class="cloud" style="--t:75s;--dl:-8s"><use href="#cloud" x="-20" y="300" width="200" height="100" opacity="0.7"/></g>
+    </svg>
+
+    <header class="wrap top">
+      <a class="brand display" href="/" aria-label="Cric Captain home">
+        <img src="app-icon.png" alt="" width="40" height="40">
+        <span>Cric Captain</span>
+      </a>
+      <nav class="top-links" aria-label="Main">
+        <a class="quiet" href="/support.html">Support</a>
+        <a class="btn sm display" href="#download">Download</a>
+      </nav>
+    </header>
+
+    <div class="wrap hero-copy">
+      <p class="kicker hand rise" style="--d:0">For captains and their teams</p>
+      <h1 class="display rise" style="--d:1">Set the field,<br>lead the team</h1>
+      <p class="lede rise" style="--d:3">Place fielders, pick the playing XI and track availability, then share it all with the team before match day.</p>
+      <div class="actions rise" style="--d:5">
+        <a class="btn display" href="https://apps.apple.com/app/id6770696288" target="_blank" rel="noopener">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2d2d2d" d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08ZM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25Z"/></svg></span>
+          App Store
+        </a>
+        <a class="btn display" href="https://play.google.com/store/apps/details?id=com.criccaptain.app" target="_blank" rel="noopener">
+          <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#00A0FF" d="M3 20.5V3.5c0-.6.3-1.12.8-1.42L13.7 12 3.8 21.92c-.5-.3-.8-.82-.8-1.42Z"/>
+            <path fill="#00C853" d="m6.05 2.66 10.75 6.44-2.26 2.05L6.05 2.66Z"/>
+            <path fill="#FFB300" d="M20.15 10.59c.75.42 1.15 1.05 1.15 1.41s-.4.99-1.15 1.41l-2.28 1.29-2.51-2.7 2.51-2.7 2.28 1.29Z"/>
+            <path fill="#FF3A44" d="m16.8 14.9-10.75 6.44 8.49-8.49 2.26 2.05Z"/>
+          </svg></span>
+          Google Play
+        </a>
+      </div>
+    </div>
+
+    <!-- the ground -->
+    <div class="scene" role="img" aria-label="A flat illustration of a cricket ground with fielders in position, the captain wearing a yellow armband, and a ball in the air">
+      <svg viewBox="0 0 1440 680" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <defs>
+          <clipPath id="ground"><ellipse cx="720" cy="780" rx="840" ry="480"/></clipPath>
+        </defs>
+
+        <g class="rise-scene">
+          <!-- trees on the horizon -->
+          <g>
+            <rect x="238" y="330" width="9" height="40" rx="3" fill="#8a5a3c"/>
+            <circle cx="242" cy="318" r="30" fill="#5fae5b"/><circle cx="222" cy="334" r="20" fill="#74c06c"/><circle cx="264" cy="332" r="21" fill="#6bb865"/>
+            <rect x="1190" y="338" width="9" height="36" rx="3" fill="#8a5a3c"/>
+            <circle cx="1194" cy="326" r="27" fill="#5fae5b"/><circle cx="1174" cy="340" r="18" fill="#74c06c"/><circle cx="1214" cy="340" r="19" fill="#6bb865"/>
+          </g>
+
+          <!-- outfield with mowing stripes -->
+          <ellipse cx="720" cy="780" rx="840" ry="480" fill="#7fc561"/>
+          <g clip-path="url(#ground)" fill="#8cd06a">
+            <rect x="0" y="0" width="90" height="680"/><rect x="180" y="0" width="90" height="680"/><rect x="360" y="0" width="90" height="680"/>
+            <rect x="540" y="0" width="90" height="680"/><rect x="720" y="0" width="90" height="680"/><rect x="900" y="0" width="90" height="680"/>
+            <rect x="1080" y="0" width="90" height="680"/><rect x="1260" y="0" width="90" height="680"/>
+          </g>
+          <ellipse cx="720" cy="780" rx="840" ry="480" fill="none" stroke="#2d2d2d" stroke-opacity="0.12" stroke-width="3"/>
+          <ellipse cx="720" cy="790" rx="800" ry="448" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+          <ellipse cx="720" cy="520" rx="350" ry="128" fill="none" stroke="#ffffff" stroke-opacity="0.75" stroke-width="3.5" stroke-dasharray="2 12" stroke-linecap="round"/>
+
+          <!-- pitch -->
+          <path d="M692 372 L748 372 L790 596 L650 596 Z" fill="#e8c98a"/>
+          <path d="M704 372 L736 372 L760 596 L680 596 Z" fill="#f1d9a3"/>
+          <g stroke="#ffffff" stroke-width="3" stroke-linecap="round">
+            <line x1="684" y1="392" x2="756" y2="392"/>
+            <line x1="662" y1="568" x2="778" y2="568"/>
+          </g>
+          <g fill="#ffffff">
+            <rect x="715" y="368" width="2.4" height="9" rx="1"/><rect x="720" y="368" width="2.4" height="9" rx="1"/><rect x="725" y="368" width="2.4" height="9" rx="1"/>
+            <rect x="712" y="590" width="3.2" height="14" rx="1.2"/><rect x="718.4" y="590" width="3.2" height="14" rx="1.2"/><rect x="724.8" y="590" width="3.2" height="14" rx="1.2"/>
+          </g>
+
+          <!-- shot path and ball -->
+          <path class="arc" pathLength="1" d="M742 540 Q 930 190 1010 360" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-dasharray="1"/>
+          <g class="ball">
+            <circle cx="924" cy="270" r="10" fill="#e5453a"/>
+            <path d="M916 266 Q924 270 932 266 M916 274 Q924 278 932 274" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round"/>
+          </g>
+
+          <!-- fielders (feet sit on the anchor point) -->
+          <g transform="translate(452 424) scale(0.8)"><g class="pop" style="--i:1"><use href="#person" x="-12" y="-46" width="24" height="46" style="color:#299bde"/></g></g>
+          <g transform="translate(572 360) scale(0.68)"><g class="pop" style="--i:2"><use href="#person" x="-12" y="-46" width="24" height="46" style="color:#299bde"/></g></g>
+          <g transform="translate(720 348) scale(0.64)"><g class="pop" style="--i:3"><use href="#person" x="-12" y="-46" width="24" height="46" style="color:#fffbf1"/></g></g>
+          <g transform="translate(884 362) scale(0.72)"><g class="pop" style="--i:4">
+            <use href="#person" x="-12" y="-46" width="24" height="46" style="color:#299bde"/>
+            <rect x="-12" y="-26" width="5" height="4.5" rx="1" fill="#ffc83d"/>
+          </g></g>
+          <g transform="translate(1000 428) scale(0.82)"><g class="pop" style="--i:5"><use href="#person" x="-12" y="-46" width="24" height="46" style="color:#299bde"/></g></g>
+          <g transform="translate(1072 526) scale(1)"><g class="pop" style="--i:6"><use href="#person" x="-12" y="-46" width="24" height="46" style="color:#299bde"/></g></g>
+          <g transform="translate(392 526) scale(1)"><g class="pop" style="--i:7"><use href="#person" x="-12" y="-46" width="24" height="46" style="color:#299bde"/></g></g>
+          <g transform="translate(616 612) scale(1.12)"><g class="pop" style="--i:8"><use href="#person" x="-12" y="-46" width="24" height="46" style="color:#299bde"/></g></g>
+          <g transform="translate(838 614) scale(1.12)"><g class="pop" style="--i:9"><use href="#person" x="-12" y="-46" width="24" height="46" style="color:#299bde"/></g></g>
+
+          <!-- batter -->
+          <g transform="translate(722 586) scale(1.08)"><g class="pop" style="--i:10">
+            <rect x="10" y="-34" width="4.5" height="24" rx="2.2" fill="#d9a35b" transform="rotate(18 12 -22)"/>
+            <use href="#person" x="-12" y="-46" width="24" height="46" style="color:#ff7a59"/>
+          </g></g>
+        </g>
+
+        <!-- cloud bank into the next section -->
+        <g fill="#e9f3fc">
+          <circle cx="40" cy="676" r="78"/><circle cx="170" cy="690" r="64"/><circle cx="300" cy="672" r="82"/><circle cx="450" cy="692" r="62"/>
+          <circle cx="590" cy="676" r="80"/><circle cx="740" cy="694" r="66"/><circle cx="880" cy="674" r="84"/><circle cx="1030" cy="692" r="64"/>
+          <circle cx="1170" cy="676" r="80"/><circle cx="1310" cy="692" r="66"/><circle cx="1430" cy="672" r="80"/>
+          <rect x="0" y="672" width="1440" height="20"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <main>
     <section class="features">
-      <div class="feature">
-        <div class="icon">🗺️</div>
-        <h3>Field placement planner</h3>
-        <p>Set your field on an interactive pitch canvas and share it with the whole team before the bowler runs in.</p>
+      <div class="wrap">
+        <div class="features-head reveal">
+          <p class="hand">Everything in one place</p>
+          <h2 class="display">Built for match day</h2>
+          <p>From the first field setting to the final scorecard, in one place the whole squad can open.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card lead reveal" style="--d:1">
+            <div class="badge" style="--tint:#cfe8f9"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+            <h3>Field placement planner</h3>
+            <p>Set your field on an interactive pitch canvas and share it with the whole team before the bowler runs in.</p>
+            <p class="note hand">Drag, drop, share.</p>
+            <svg class="mini" viewBox="0 0 460 300" aria-hidden="true">
+              <ellipse cx="240" cy="230" rx="230" ry="200" fill="#7fc561"/>
+              <ellipse cx="240" cy="230" rx="214" ry="184" fill="none" stroke="#fff" stroke-width="3"/>
+              <ellipse cx="240" cy="200" rx="110" ry="80" fill="none" stroke="#fff" stroke-opacity="0.7" stroke-width="2.5" stroke-dasharray="2 9" stroke-linecap="round"/>
+              <path d="M222 140 L258 140 L276 262 L204 262 Z" fill="#e8c98a"/>
+              <g fill="#299bde" stroke="#fffbf1" stroke-width="3">
+                <circle cx="130" cy="150" r="11"/><circle cx="330" cy="146" r="11"/><circle cx="96" cy="230" r="11"/>
+                <circle cx="372" cy="228" r="11"/><circle cx="170" cy="96" r="11"/>
+              </g>
+              <circle cx="298" cy="92" r="12" fill="#ffc83d" stroke="#fffbf1" stroke-width="3"/>
+            </svg>
+          </article>
+
+          <article class="card reveal" style="--d:2">
+            <div class="badge" style="--tint:#ffe9a8"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
+            <h3>Matches &amp; tournaments</h3>
+            <p>Schedule matches, pick your XI, track results across tournaments and divisions.</p>
+          </article>
+
+          <article class="card reveal" style="--d:3">
+            <div class="badge" style="--tint:#ffd5c8"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3>Team &amp; availability</h3>
+            <p>Invite players with a code, manage your roster, and know who's available before selection day.</p>
+          </article>
+
+          <article class="card reveal" style="--d:4">
+            <div class="badge" style="--tint:#cfe8f9"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
+            <h3>Stats &amp; exports</h3>
+            <p>Appearances, win rates and match logs per player — exportable to Excel in one tap.</p>
+          </article>
+        </div>
       </div>
-      <div class="feature">
-        <div class="icon">🏆</div>
-        <h3>Matches &amp; tournaments</h3>
-        <p>Schedule matches, pick your XI, track results across tournaments and divisions.</p>
-      </div>
-      <div class="feature">
-        <div class="icon">👥</div>
-        <h3>Team &amp; availability</h3>
-        <p>Invite players with a code, manage your roster, and know who's available before selection day.</p>
-      </div>
-      <div class="feature">
-        <div class="icon">📊</div>
-        <h3>Stats &amp; exports</h3>
-        <p>Appearances, win rates and match logs per player — exportable to Excel in one tap.</p>
+    </section>
+
+    <section class="cta" id="download">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="hand">Available on iPhone and Android</p>
+          <h2 class="display">Get Cric Captain</h2>
+          <div class="actions">
+            <a class="btn display" href="https://apps.apple.com/app/id6770696288" target="_blank" rel="noopener">
+              <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2d2d2d" d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08ZM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25Z"/></svg></span>
+              App Store
+            </a>
+            <a class="btn display" href="https://play.google.com/store/apps/details?id=com.criccaptain.app" target="_blank" rel="noopener">
+              <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#00A0FF" d="M3 20.5V3.5c0-.6.3-1.12.8-1.42L13.7 12 3.8 21.92c-.5-.3-.8-.82-.8-1.42Z"/>
+                <path fill="#00C853" d="m6.05 2.66 10.75 6.44-2.26 2.05L6.05 2.66Z"/>
+                <path fill="#FFB300" d="M20.15 10.59c.75.42 1.15 1.05 1.15 1.41s-.4.99-1.15 1.41l-2.28 1.29-2.51-2.7 2.51-2.7 2.28 1.29Z"/>
+                <path fill="#FF3A44" d="m16.8 14.9-10.75 6.44 8.49-8.49 2.26 2.05Z"/>
+              </svg></span>
+              Google Play
+            </a>
+          </div>
+        </div>
+
+        <footer>
+          <div class="foot">
+            <nav aria-label="Legal">
+              <a href="/support.html">Support</a>
+              <a href="/privacy-policy.html">Privacy Policy</a>
+              <a href="/terms-and-conditions.html">Terms &amp; Conditions</a>
+              <a href="/delete-account.html">Delete Account</a>
+            </nav>
+            <p>© 2026 Cric Captain · criccaptain.app@gmail.com</p>
+          </div>
+        </footer>
       </div>
     </section>
   </main>
 
-  <footer class="wrap">
-    <nav>
-      <a href="/support.html">Support</a>
-      <a href="/privacy-policy.html">Privacy Policy</a>
-      <a href="/terms-and-conditions.html">Terms &amp; Conditions</a>
-      <a href="/delete-account.html">Delete Account</a>
-    </nav>
-    <p>© 2026 Cric Captain · criccaptain.app@gmail.com</p>
-  </footer>
+  <script>
+    (function () {
+      var items = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(function (el) { el.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.15 });
+      items.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 </body>
 </html>
