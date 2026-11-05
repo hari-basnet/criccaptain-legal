@@ -1,0 +1,30 @@
+# Cric Captain
+
+> Cric Captain is a cricket team management app for club and school captains, available on iPhone, iPad and Android. Captains build the playing XI, place fielders on a visual pitch, track player availability, and schedule matches and tournaments, then share the plan with the whole team.
+
+Cric Captain is free to download. Captains get a 14-day free trial, and players can always join and use the app for free. An optional Pro subscription unlocks unlimited teams, templates and full match history; current pricing is shown in the App Store and Google Play listings.
+
+## What it does
+
+- Field placement: drag-and-drop fielders on an interactive pitch, save and reuse templates, build custom setups per match or bowler
+- Match day: pick the playing XI, check player availability, set the bowling plan, log opponent notes, coordinate carpools for away matches
+- Teams: invite players with a join code, manage join requests and the full roster
+- Tournaments: organise and track matches across a tournament
+- Stats: appearances, win rates and match logs per player, exportable to Excel
+
+## Get the app
+
+- [App Store](https://apps.apple.com/app/id6770696288): Cric Captain: Team Manager for iPhone and iPad
+- [Google Play](https://play.google.com/store/apps/details?id=com.criccaptain.app): Cric Captain: Team Manager for Android
+
+## Pages
+
+- [Home](https://criccaptain.com/): overview, features and frequently asked questions
+- [Support](https://criccaptain.com/support.html): contact form and answers to common questions
+- [Privacy Policy](https://criccaptain.com/privacy-policy.html): what data is collected, why, and how to exercise your rights
+- [Terms and Conditions](https://criccaptain.com/terms-and-conditions.html)
+- [Delete your account](https://criccaptain.com/delete-account.html): how to permanently delete your account and data
+
+## Contact
+
+criccaptain.app@gmail.com. The controller of personal data is Cric Captain, Finland.
