@@ -183,19 +183,27 @@
       flex-wrap: wrap;
       gap: 8px;
     }
+
+    a.hero, a.hero:hover { text-decoration: none; color: inherit; }
+    .sitenav { max-width: 720px; margin: 0 auto 32px; font-size: 13px; }
+    .sitenav a { color: #1d6fb0; }
+    .footnav { width: 100%; font-size: 13px; }
+    .footnav a { color: #1d6fb0; }
   </style>
 </head>
 <body>
 
-  <div class="hero">
+  <a class="hero" href="/" aria-label="Cric Captain home">
     <div class="logo"><img src="icon-96.png" alt="Cric Captain" width="52" height="52" decoding="async"></div>
     <div class="hero-text">
       <h1>Cric Captain</h1>
       <p>Cricket Team Management App</p>
     </div>
-  </div>
+  </a>
 
   <div class="container">
+
+    <div class="sitenav"><a href="/">← Home</a></div>
 
     <div class="meta">
       <strong>Privacy Policy</strong> &nbsp;·&nbsp; Effective date: 19 May 2026 &nbsp;·&nbsp; Last updated: 22 August 2026
@@ -409,7 +417,10 @@
     </div>
 
     <footer>
-      <span>© 2026 Cric Captain. All rights reserved.</span>
+      <nav class="footnav" aria-label="Site">
+        <a href="/">Home</a> · <a href="/support.html">Support</a> · <a href="/privacy-policy.html">Privacy Policy</a> · <a href="/terms-and-conditions.html">Terms &amp; Conditions</a> · <a href="/delete-account.html">Delete Account</a>
+      </nav>
+            <span>© 2026 Cric Captain. All rights reserved.</span>
       <span>Last updated: 22 August 2026</span>
     </footer>
 

@@ -54,10 +54,14 @@
       margin: 24px 0;
     }
     a { color: var(--gold-soft); }
+    .brandlink { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 28px; text-decoration: none; color: var(--text); font-family: "Baloo 2", system-ui, sans-serif; font-weight: 800; font-size: 20px; }
+    .brandlink img { width: 40px; height: 40px; border-radius: 12px; box-shadow: 0 3px 0 rgba(45, 45, 45, 0.14); }
+    .footnav { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--hair); font-size: 13px; }
     a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
   </style>
 </head>
 <body>
+  <a class="brandlink" href="/" aria-label="Cric Captain home"><img src="icon-96.png" alt="" width="40" height="40" decoding="async"><span>Cric Captain</span></a>
   <h1>Delete Your CricCaptain Account &amp; Data</h1>
 
   <p>
@@ -108,5 +112,8 @@
     the email address associated with your account, and we will delete your account
     and data within 30 days.
   </p>
+  <nav class="footnav" aria-label="Site">
+    <a href="/">Home</a> · <a href="/support.html">Support</a> · <a href="/privacy-policy.html">Privacy Policy</a> · <a href="/terms-and-conditions.html">Terms &amp; Conditions</a>
+  </nav>
 </body>
 </html>
