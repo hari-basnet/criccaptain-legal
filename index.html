@@ -96,6 +96,11 @@
           },
           {
             "@type": "Question",
+            "name": "Can I cancel the free trial?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can cancel the free trial at any time in your App Store or Google Play subscription settings. If you cancel before the 14 days end, you will not be charged. On iPhone, cancel at least 24 hours before the trial ends." }
+          },
+          {
+            "@type": "Question",
             "name": "How do players join a team?",
             "acceptedAnswer": { "@type": "Answer", "text": "Ask your team's captain for a join code. Create an account in the app, enter the code when you sign up, and you are linked to the team automatically." }
           },
@@ -321,6 +326,9 @@
       .kicker { font-size: 19px; }
       .lede { font-size: 16px; }
       .actions .btn { flex: 1 1 100%; justify-content: center; padding: 0 24px 0 12px; }
+      .perks { gap: 8px; margin-top: 20px; }
+      .perks li { font-size: 14px; padding: 6px 12px 6px 6px; gap: 6px; }
+      .perks svg { width: 20px; height: 20px; }
       .scene { height: min(44vh, 380px); margin-top: -48px; }
     }
 
@@ -395,7 +403,7 @@
         </a>
       </div>
       <ul class="perks rise" style="--d:6" aria-label="Pricing">
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#ffc83d"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#2d2d2d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>14-day free trial</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#ffc83d"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#2d2d2d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>14-day free trial, cancel anytime</li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#ffc83d"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#2d2d2d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Free for players</li>
       </ul>
     </div>
@@ -548,6 +556,10 @@
             <p>Cric Captain is free to download. Captains get a 14-day free trial, and players can always join and use the app for free. An optional Pro subscription unlocks unlimited teams, templates and full match history. Current pricing is shown in the App Store and Google Play.</p>
           </details>
           <details class="reveal" style="--d:4">
+            <summary>Can I cancel the free trial?</summary>
+            <p>Yes. You can cancel the free trial at any time in your App Store or Google Play subscription settings. If you cancel before the 14 days end, you will not be charged. On iPhone, cancel at least 24 hours before the trial ends.</p>
+          </details>
+          <details class="reveal" style="--d:4">
             <summary>How do players join a team?</summary>
             <p>Ask your team's captain for a join code. Create an account in the app, enter the code when you sign up, and you are linked to the team automatically.</p>
           </details>
@@ -584,7 +596,7 @@
             </a>
           </div>
           <ul class="perks" aria-label="Pricing">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#ffc83d"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#2d2d2d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>14-day free trial</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#ffc83d"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#2d2d2d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>14-day free trial, cancel anytime</li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#ffc83d"/><path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#2d2d2d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Free for players</li>
           </ul>
         </div>

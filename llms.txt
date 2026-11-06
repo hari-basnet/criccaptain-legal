@@ -2,7 +2,7 @@
 
 > Cric Captain is a cricket team management app for club and school captains, available on iPhone, iPad and Android. Captains build the playing XI, place fielders on a visual pitch, track player availability, and schedule matches and tournaments, then share the plan with the whole team.
 
-Cric Captain is free to download. Captains get a 14-day free trial, and players can always join and use the app for free. An optional Pro subscription unlocks unlimited teams, templates and full match history; current pricing is shown in the App Store and Google Play listings.
+Cric Captain is free to download. Captains get a 14-day free trial that can be cancelled at any time in the App Store or Google Play subscription settings, and players can always join and use the app for free. An optional Pro subscription unlocks unlimited teams, templates and full match history; current pricing is shown in the App Store and Google Play listings.
 
 ## What it does
 
