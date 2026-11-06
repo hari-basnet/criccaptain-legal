@@ -272,13 +272,16 @@
     .faq { padding: 0 0 112px; background: var(--sky); }
     .faq .features-head { margin-bottom: 40px; }
     .faq-list { max-width: 760px; margin: 0 auto; display: grid; gap: 12px; }
-    .faq-list details { background: var(--cream); border-radius: 20px; padding: 0 24px; box-shadow: 0 4px 0 rgba(31, 120, 180, 0.12); }
-    .faq-list summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0; font-family: var(--display); font-weight: 800; font-synthesis: none; font-size: 20px; line-height: 1.2; }
+    .faq-list details { background: var(--cream); border-radius: 20px; padding: 0; box-shadow: 0 4px 0 rgba(31, 120, 180, 0.12); }
+    .faq-list summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; border-radius: 20px; -webkit-tap-highlight-color: transparent; font-family: var(--display); font-weight: 800; font-synthesis: none; font-size: 20px; line-height: 1.2; }
     .faq-list summary::-webkit-details-marker { display: none; }
     .faq-list summary::after { content: ""; flex: none; width: 10px; height: 10px; border-right: 3px solid var(--blue-edge); border-bottom: 3px solid var(--blue-edge); transform: rotate(45deg) translateY(-2px); transition: transform 150ms var(--ease); }
     .faq-list details[open] summary::after { transform: rotate(-135deg) translateY(-2px); }
-    .faq-list summary:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; border-radius: 8px; }
-    .faq-list details p { padding: 0 0 22px; font-size: 16px; line-height: 1.6; color: var(--ink-2); max-width: 40rem; }
+    .faq-list summary:active { background: rgba(41, 155, 222, 0.1); }
+    .faq-list summary:focus-visible { outline: none; }
+    .faq-list details:has(summary:focus-visible) { outline: 3px solid var(--ink); outline-offset: 3px; }
+    @supports not selector(:has(a)) { .faq-list summary:focus-visible { outline: 3px solid var(--ink); outline-offset: -3px; } }
+    .faq-list details p { padding: 0 24px 22px; font-size: 16px; line-height: 1.6; color: var(--ink-2); max-width: 40rem; }
     .faq-list details a { color: #1d6fb0; text-decoration: underline; text-underline-offset: 3px; }
 
     /* download */
